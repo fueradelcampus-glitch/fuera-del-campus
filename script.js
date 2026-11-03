@@ -562,9 +562,92 @@ function showQuiz(){currentQuiz=takeRandom(quiz,usedQuiz);document.getElementByI
 document.getElementById("quiz-next").addEventListener("click",showQuiz);showQuiz();
 
 // =====================================
-// STUDENT DOUBTS - CONVERSATIONAL STUDY HELPER DEMO
 // =====================================
-const doubtForm=document.getElementById("doubt-form"), doubtInput=document.getElementById("doubt-input"), doubtChat=document.getElementById("doubt-chat");
-function addChat(text,who){const bubble=document.createElement("div");bubble.className=`chat-bubble ${who}`;bubble.textContent=text;doubtChat.appendChild(bubble);doubtChat.scrollTop=doubtChat.scrollHeight;}
-function studyReply(q){const s=q.toLowerCase();if(/hello|hi|hey/.test(s))return "Hey! 😊 What subject are you working on today?";if(/math|equation|fraction|algebra|number/.test(s))return "Let's solve it step by step. First, identify what the question gives you and what it asks you to find. Share the exact problem and I'll help break it into smaller steps.";if(/science|biology|physics|chemistry|photosynthesis|force/.test(s))return "A good way to understand science is to connect the idea to an example. Tell me the exact topic or question, and we can go through the concept, an example, and a short recap.";if(/history|when|who|war|king/.test(s))return "Let's organise this clearly: identify the people involved, the time period, the main event, and why it mattered. Which event or chapter are you asking about?";if(/english|grammar|essay|writing/.test(s))return "I can help with grammar, meanings, summaries and writing. Paste the sentence or tell me the topic, and I'll explain it in simple language.";if(/exam|study|remember|revise/.test(s))return "Try this: study one small topic for 20–25 minutes, close your notes and recall the main points, then check what you missed. What subject should we revise?";return "I'm here to help! Could you share the subject, chapter, or exact question? I'll help you understand it step by step. (This is the site's built-in demo helper, not a live AI connection yet.)";}
-doubtForm.addEventListener("submit",e=>{e.preventDefault();const q=doubtInput.value.trim();if(!q)return;addChat(q,"user");doubtInput.value="";setTimeout(()=>addChat(studyReply(q),"assistant"),250);});
+// DEMO LOGIN / SIGN UP (LOCAL BROWSER)
+// =====================================
+const AUTH_USERS_KEY = "fueraCampusDemoUsers";
+const AUTH_SESSION_KEY = "fueraCampusDemoSession";
+const authScreen = document.getElementById("auth-screen");
+const authForm = document.getElementById("auth-form");
+const authName = document.getElementById("auth-name");
+const authPassword = document.getElementById("auth-password");
+const authMessage = document.getElementById("auth-message");
+const authTitle = document.getElementById("auth-title");
+const authSubtitle = document.getElementById("auth-subtitle");
+const authSubmit = document.getElementById("auth-submit");
+const loginTab = document.getElementById("login-tab");
+const signupTab = document.getElementById("signup-tab");
+const logoutButton = document.getElementById("logout-button");
+let authMode = "login";
+function getUsers() { try { return JSON.parse(localStorage.getItem(AUTH_USERS_KEY)) || {}; } catch { return {}; } }
+function setAuthMode(mode) {
+  authMode = mode; const signup = mode === "signup";
+  loginTab.classList.toggle("active", !signup); signupTab.classList.toggle("active", signup);
+  authTitle.textContent = signup ? "Create your space." : "Welcome back.";
+  authSubtitle.textContent = signup ? "Make an account and get started." : "Log in to continue your journey.";
+  authSubmit.textContent = signup ? "Create account →" : "Log in →";
+  authPassword.autocomplete = signup ? "new-password" : "current-password"; authMessage.textContent = "";
+}
+loginTab.addEventListener("click", () => setAuthMode("login"));
+signupTab.addEventListener("click", () => setAuthMode("signup"));
+function enterApp(name) {
+  localStorage.setItem(AUTH_SESSION_KEY, name);
+  document.getElementById("profile-name").textContent = name;
+  document.querySelector(".avatar").textContent = name.charAt(0).toUpperCase();
+  authScreen.classList.add("auth-hidden"); document.querySelector(".app").classList.add("app-ready");
+}
+authForm.addEventListener("submit", event => {
+  event.preventDefault(); const name = authName.value.trim(); const password = authPassword.value;
+  if (!name || !password) return;
+  const users = getUsers(); const key = name.toLowerCase();
+  if (authMode === "signup") {
+    if (users[key]) { authMessage.textContent = "That name already has an account. Please log in."; setAuthMode("login"); return; }
+    users[key] = { name, password }; localStorage.setItem(AUTH_USERS_KEY, JSON.stringify(users)); enterApp(name);
+  } else {
+    if (!users[key] || users[key].password !== password) { authMessage.textContent = "Name or password is incorrect. Try again or sign up."; return; }
+    enterApp(users[key].name);
+  }
+});
+logoutButton.addEventListener("click", () => {
+  localStorage.removeItem(AUTH_SESSION_KEY); authScreen.classList.remove("auth-hidden");
+  document.querySelector(".app").classList.remove("app-ready"); authPassword.value = ""; authName.value = ""; setAuthMode("login");
+});
+const savedSession = localStorage.getItem(AUTH_SESSION_KEY);
+if (savedSession && getUsers()[savedSession.toLowerCase()]) enterApp(savedSession);
+else authScreen.classList.remove("auth-hidden");
+
+// =====================================
+// STUDENT DOUBTS - GEMINI AI STUDY HELPER
+// =====================================
+const GEMINI_API_KEY = "AQ.Ab8RN6I2dc9FCmqNQYnjnLUCr4Bh5q-u2lIAVqCBZic-DSvkdQ";
+const GEMINI_MODEL = "gemini-2.5-flash";
+const doubtForm = document.getElementById("doubt-form");
+const doubtInput = document.getElementById("doubt-input");
+const doubtChat = document.getElementById("doubt-chat");
+let doubtHistory = [];
+function addChat(message, sender) {
+  const bubble = document.createElement("div"); bubble.className = `chat-bubble ${sender}`;
+  bubble.textContent = message; doubtChat.appendChild(bubble); doubtChat.scrollTop = doubtChat.scrollHeight;
+}
+function removeAiLoading() { const loading = document.getElementById("gemini-loading"); if (loading) loading.remove(); }
+async function askGemini(question) {
+  if (GEMINI_API_KEY === "AQ.Ab8RN6I2dc9FCmqNQYnjnLUCr4Bh5q-u2lIAVqCBZic-DSvkdQ") { addChat("The chatbot is ready, but the organiser still needs to add the Gemini API key in script.js.", "assistant"); return; }
+  const loading = document.createElement("div"); loading.id = "gemini-loading"; loading.className = "chat-bubble assistant"; loading.textContent = "Thinking…";
+  doubtChat.appendChild(loading); doubtChat.scrollTop = doubtChat.scrollHeight;
+  doubtHistory.push({ role: "user", parts: [{ text: question }] });
+  try {
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`, {
+      method: "POST", headers: { "Content-Type": "application/json", "x-goog-api-key": GEMINI_API_KEY },
+      body: JSON.stringify({
+        systemInstruction: { parts: [{ text: "You are the friendly Student Doubts AI assistant for FUERA DEL CAMPUS, a school robotics fest. Explain robotics, coding, Arduino, electronics, sensors, circuits, maths and science in simple student-friendly steps. Be encouraging and concise. Never invent official event dates, rules, schedules or fees; direct students to organisers for unknown event information." }] },
+        contents: doubtHistory, generationConfig: { temperature: 0.7, maxOutputTokens: 850 }
+      })
+    });
+    const data = await response.json(); removeAiLoading();
+    if (!response.ok) { doubtHistory.pop(); addChat(response.status === 429 ? "Gemini's free usage limit has been reached. Please try again later." : (data.error?.message || "Gemini could not answer. Please try again."), "assistant"); return; }
+    const answer = data.candidates?.[0]?.content?.parts?.map(p => p.text || "").join("").trim();
+    if (!answer) { doubtHistory.pop(); addChat("I couldn't create an answer. Please try asking another way.", "assistant"); return; }
+    doubtHistory.push({ role: "model", parts: [{ text: answer }] }); addChat(answer, "assistant");
+  } catch (error) { removeAiLoading(); doubtHistory.pop(); addChat("I can't connect to Gemini right now. Check your internet connection and try again.", "assistant"); console.error("Gemini error:", error); }
+}
+doubtForm.addEventListener("submit", event => { event.preventDefault(); const question = doubtInput.value.trim(); if (!question) return; addChat(question, "user"); doubtInput.value = ""; askGemini(question); });
