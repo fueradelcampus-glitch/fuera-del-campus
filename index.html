@@ -1,0 +1,319 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f7fc">
+  <title>FUERA DEL CAMPUS | Student Space</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Animated brand intro: first logo pops up, then the compact logo remains in the sidebar. -->
+<div class="brand-intro" id="brand-intro" aria-label="Fuera del Campus introduction">
+  <img src="logo-intro.png" alt="Fuera del Campus full adventure logo">
+</div>
+
+<div class="app">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="logo"><img src="logo-small.png" alt="Fuera del Campus logo"></div>
+    <p class="nav-label">MAIN MENU</p>
+
+    <button class="nav-btn active" data-page="home">⌂ Dashboard</button>
+    <button class="nav-btn" data-page="central">▦ Student Central</button>
+    <button class="nav-btn" data-page="games"><span class="nav-icon" aria-hidden="true">▦</span> Education Games</button>
+    <button class="nav-btn" data-page="doubts">💬 Student Doubts</button>
+    <button class="nav-btn" data-page="lost">⌕ Lost & Found</button>
+    <button class="nav-btn" data-page="future">◎ FutureMe</button>
+    <button class="nav-btn" data-page="study">▤ StudyBuddy</button>
+
+    <div class="sidebar-bottom">
+      <div class="mini-profile">
+        <div class="avatar">F</div>
+        <div>
+          <strong>Student Space</strong>
+          <small>Your daily companion</small>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">YOUR DIGITAL STUDENT SPACE</p>
+        <h2 id="page-heading">Dashboard</h2>
+      </div>
+      <div class="top-tag">✦ FUERA DEL CAMPUS</div>
+    </header>
+
+    <!-- HOME -->
+    <section id="home" class="page active">
+
+      <div class="hero">
+        <div>
+          <span class="hero-tag">WELCOME TO FUERA DEL CAMPUS</span>
+          <h1>Make your student<br>life <span>easier.</span></h1>
+          <p>
+            Organize your day, find what you lost,<br>
+            discover your future and study smarter.
+          </p>
+          <button class="primary-btn" data-go="central">
+            Explore your space →
+          </button>
+        </div>
+        <div class="hero-art">✦</div>
+      </div>
+
+      <h3 class="section-heading">Explore your space</h3>
+
+      <div class="feature-grid">
+
+        <div class="feature-card lavender" data-go="central">
+          <span class="feature-icon">▦</span>
+          <h3>Student Central</h3>
+          <p>Your timetable and daily tasks.</p>
+          <span class="card-link">Open section →</span>
+        </div>
+
+        <div class="feature-card blue" data-go="games"><span class="feature-icon" aria-hidden="true">▦</span><h3>Education Games</h3><p>Learn through quick challenges and games.</p><span class="card-link">Play games →</span></div>
+        <div class="feature-card lavender" data-go="doubts"><span class="feature-icon">💬</span><h3>Student Doubts</h3><p>Ask a question and chat with your study helper.</p><span class="card-link">Ask a doubt →</span></div>
+
+        <div class="feature-card mint" data-go="lost">
+          <span class="feature-icon">⌕</span>
+          <h3>Lost & Found</h3>
+          <p>Find your missing belongings.</p>
+          <span class="card-link">Open section →</span>
+        </div>
+
+        <div class="feature-card peach" data-go="future">
+          <span class="feature-icon">◎</span>
+          <h3>FutureMe</h3>
+          <p>Explore your interests and careers.</p>
+          <span class="card-link">Open section →</span>
+        </div>
+
+        <div class="feature-card blue" data-go="study">
+          <span class="feature-icon">▤</span>
+          <h3>StudyBuddy</h3>
+          <p>Make studying more productive.</p>
+          <span class="card-link">Open section →</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- STUDENT CENTRAL -->
+    <section id="central" class="page">
+
+      <div class="intro-card lavender">
+        <h1>Student Central</h1>
+        <p>Your personal space to organize school life.</p>
+      </div>
+
+      <div class="two-columns">
+
+        <div class="panel">
+          <h3>My Tasks</h3>
+
+          <form id="task-form" class="form-row">
+            <input id="task-input"
+              placeholder="Add an assignment..." required>
+            <button class="primary-btn">+</button>
+          </form>
+
+          <div id="task-list"></div>
+        </div>
+
+        <div class="panel">
+          <h3>My Timetable</h3>
+          <p class="muted">Add your classes and keep your weekly schedule in one place.</p>
+
+          <p class="muted">Choose a day and add its 8 periods in order. After period 8, you'll be asked to choose the next day.</p>
+          <form id="timetable-form" class="stack-form timetable-form">
+            <select id="class-day" required aria-label="Choose day">
+              <option value="" disabled selected>Choose a day to begin</option>
+              <option>Monday</option><option>Tuesday</option><option>Wednesday</option>
+              <option>Thursday</option><option>Friday</option><option>Saturday</option><option>Sunday</option>
+            </select>
+            <div id="period-progress" class="period-progress" aria-live="polite">Choose a day to start period 1 of 8.</div>
+            <input id="class-subject" placeholder="Subject for this period" required maxlength="60">
+            <input id="class-room" placeholder="Room / teacher (optional)" maxlength="60">
+            <button class="primary-btn" type="submit">+ Save this period</button>
+          </form>
+          <div id="timetable-list" aria-live="polite"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- EDUCATION GAMES -->
+    <section id="games" class="page">
+      <div class="intro-card blue"><h1>Education Games</h1><p>Play, practise and learn. Choose a game to begin!</p></div>
+      <div class="game-section"><h2>Number Games</h2><div class="game-grid"><div class="panel game-card"><h3>Quick Maths</h3><p class="muted">Solve as many sums as you can.</p><div id="math-question" class="game-question">Ready?</div><form id="math-form" class="form-row"><input id="math-answer" type="number" placeholder="Your answer" required><button class="primary-btn">Check</button></form><button id="math-new" class="secondary-btn" type="button">Skip question</button></div></div></div>
+      <div class="game-section"><h2>Word Games</h2><div class="game-grid"><div class="panel game-card"><h3>Word Scramble</h3><p class="muted">Unscramble the school-related word.</p><div id="scramble-word" class="game-question"></div><form id="scramble-form" class="form-row"><input id="scramble-answer" placeholder="Type the word" required><button class="primary-btn">Check</button></form><button id="scramble-new" class="secondary-btn" type="button">Skip word</button></div></div></div>
+      <div class="game-section"><h2>Memory Games</h2><div class="game-grid"><div class="panel game-card"><h3>Memory Match</h3><p class="muted">Find matching pairs. Tap two cards.</p><div id="memory-board" class="memory-board"></div><p id="memory-feedback" class="muted">Find all the pairs!</p><button id="memory-reset" class="secondary-btn" type="button">Restart game</button></div></div></div>
+      <div class="game-section"><h2>Knowledge Quiz</h2><div class="game-grid"><div class="panel game-card"><h3>General Knowledge</h3><p class="muted">Test your knowledge with a quick quiz.</p><div id="quiz-question" class="game-question"></div><div id="quiz-options" class="quiz-options"></div><button id="quiz-next" class="secondary-btn" type="button">Next question</button></div></div></div>
+      <div id="game-toast" class="game-toast" role="status" aria-live="polite"></div>
+    </section>
+
+    <!-- STUDENT DOUBTS -->
+    <section id="doubts" class="page">
+      <div class="intro-card lavender"><h1>Student Doubts</h1><p>Ask questions in a chat-style study conversation.</p></div>
+      <div class="panel chat-panel"><div class="chat-note">Study helper · Demo mode. This version uses built-in guidance; live AI replies need an AI service connection.</div><div id="doubt-chat" class="chat-messages" aria-live="polite"><div class="chat-bubble assistant">Hi! 👋 I'm your study helper. Ask me a school question, tell me a topic you find difficult, or ask for a simple explanation.</div></div><form id="doubt-form" class="chat-form"><input id="doubt-input" placeholder="Type your doubt here..." required maxlength="600"><button class="primary-btn">Send</button></form></div>
+    </section>
+
+    <!-- LOST AND FOUND -->
+    <section id="lost" class="page">
+
+      <div class="intro-card mint">
+        <h1>Lost & Found</h1>
+        <p>Lost something? Found something? Help reunite it with its owner.</p>
+      </div>
+
+      <div class="panel">
+        <h3>Report an item</h3>
+
+        <form id="lost-form" class="stack-form">
+          <input id="item-name" placeholder="Item name" required>
+
+          <select id="item-type">
+            <option value="Lost">I lost this item</option>
+            <option value="Found">I found this item</option>
+          </select>
+
+          <input id="item-location"
+            placeholder="Where was it lost/found?" required>
+
+          <textarea id="item-description"
+            placeholder="Short description"></textarea>
+
+          <button class="primary-btn">Submit report</button>
+        </form>
+      </div>
+
+      <div class="panel">
+        <h3>Recent reports</h3>
+        <input id="item-search" placeholder="Search items...">
+        <div id="item-list"></div>
+      </div>
+
+      <p class="muted">
+        Demo reports are stored in this browser.
+        Contact the school office to claim an item.
+      </p>
+    </section>
+
+    <!-- FUTURE ME -->
+    <section id="future" class="page">
+
+      <div class="intro-card peach">
+        <h1>FutureMe</h1>
+        <p>Your future starts with discovering what you enjoy.</p>
+      </div>
+
+      <div class="panel quiz-panel">
+        <h3>Discover your interests</h3>
+        <p>Choose the activity you enjoy most.</p>
+
+        <div class="choice-grid">
+          <button class="choice" data-career="technology">
+            💻 Coding & technology
+          </button>
+
+          <button class="choice" data-career="creative">
+            🎨 Art & creativity
+          </button>
+
+          <button class="choice" data-career="science">
+            🔬 Science & discovery
+          </button>
+
+          <button class="choice" data-career="business">
+            📈 Business & leadership
+          </button>
+
+          <button class="choice" data-career="helping">
+            🤝 Helping people
+          </button>
+
+          <button class="choice" data-career="engineering">
+            ⚙️ Building & designing
+          </button>
+        </div>
+
+        <button id="career-submit" class="primary-btn">
+          Explore my possibilities →
+        </button>
+
+        <div id="career-result" class="result-box hidden"></div>
+      </div>
+    </section>
+
+    <!-- STUDY BUDDY -->
+    <section id="study" class="page">
+
+      <div class="intro-card blue">
+        <h1>StudyBuddy</h1>
+        <p>Focus better. Revise smarter. Learn at your own pace.</p>
+      </div>
+
+      <div class="two-columns">
+
+        <div class="panel timer-panel">
+          <h3>Focus Timer</h3>
+          <p class="muted">A simple 25-minute study session.</p>
+
+          <div id="timer">25:00</div>
+
+          <div class="timer-controls">
+            <button id="start-timer" class="primary-btn">Start</button>
+            <button id="reset-timer" class="secondary-btn">Reset</button>
+          </div>
+
+          <p id="timer-status" class="muted">
+            Ready when you are!
+          </p>
+        </div>
+
+        <div class="panel">
+          <h3>Flashcards</h3>
+          <p class="muted">Create cards for quick revision.</p>
+
+          <form id="flash-form" class="stack-form">
+            <input id="flash-question"
+              placeholder="Question" required>
+
+            <input id="flash-answer"
+              placeholder="Answer" required>
+
+            <button class="primary-btn">Add flashcard</button>
+          </form>
+
+          <div id="flashcard-area"></div>
+
+          <div class="flash-controls">
+            <button id="prev-card" class="secondary-btn">← Previous</button>
+            <button id="flip-card" class="secondary-btn">Flip card</button>
+            <button id="next-card" class="secondary-btn">Next →</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <footer>
+      © 2026 FUERA DEL CAMPUS · Made for students, by students.
+    </footer>
+
+  </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
