@@ -10,11 +10,13 @@
 </head>
 <body>
 
-<!-- Animated brand intro: first logo pops up, then the compact logo remains in the sidebar. -->
-<div class="brand-intro" id="brand-intro" aria-label="Fuera del Campus introduction">
-  <img src="logo-intro.png" alt="Fuera del Campus full adventure logo">
-</div>
-
+<!-- LOGIN / SIGN UP GATE -->
+<div class="auth-screen" id="auth-screen"><div class="auth-panel">
+<div class="auth-copy"><p class="auth-kicker">FUERA DEL CAMPUS · STUDENT SPACE</p><h1 id="auth-title">Welcome back.</h1><p id="auth-subtitle">Log in to continue your journey.</p>
+<div class="auth-tabs"><button type="button" class="auth-tab active" id="login-tab">Log in</button><button type="button" class="auth-tab" id="signup-tab">Sign up</button></div>
+<form id="auth-form" class="auth-form"><label for="auth-name">Name</label><input id="auth-name" type="text" placeholder="Enter your name" autocomplete="username" required maxlength="40"><label for="auth-password">Password</label><input id="auth-password" type="password" placeholder="Enter your password" autocomplete="current-password" required minlength="4" maxlength="64"><button class="auth-submit" id="auth-submit" type="submit">Log in →</button></form>
+<p id="auth-message" class="auth-message" role="status" aria-live="polite"></p><p class="auth-footnote">Demo account · No email or verification needed</p></div>
+<div class="auth-brand"><img src="logo-intro.png" alt="Fuera del Campus logo"><p>LEARN · CREATE · EXPLORE</p></div></div></div>
 <div class="app">
 
   <!-- SIDEBAR -->
@@ -35,9 +37,10 @@
         <div class="avatar">F</div>
         <div>
           <strong>Student Space</strong>
-          <small>Your daily companion</small>
+          <small id="profile-name">Your daily companion</small>
         </div>
       </div>
+      <button type="button" id="logout-button" class="logout-button">Sign out</button>
     </div>
   </aside>
 
@@ -165,7 +168,7 @@
     <!-- STUDENT DOUBTS -->
     <section id="doubts" class="page">
       <div class="intro-card lavender"><h1>Student Doubts</h1><p>Ask questions in a chat-style study conversation.</p></div>
-      <div class="panel chat-panel"><div class="chat-note">Study helper · Demo mode. This version uses built-in guidance; live AI replies need an AI service connection.</div><div id="doubt-chat" class="chat-messages" aria-live="polite"><div class="chat-bubble assistant">Hi! 👋 I'm your study helper. Ask me a school question, tell me a topic you find difficult, or ask for a simple explanation.</div></div><form id="doubt-form" class="chat-form"><input id="doubt-input" placeholder="Type your doubt here..." required maxlength="600"><button class="primary-btn">Send</button></form></div>
+      <div class="panel chat-panel"><div class="chat-note">Study helper · Powered by Gemini AI. Ask about robotics, coding, science or schoolwork.</div><div id="doubt-chat" class="chat-messages" aria-live="polite"><div class="chat-bubble assistant">Hi! 👋 I'm your study helper. Ask me a school question, tell me a topic you find difficult, or ask for a simple explanation.</div></div><form id="doubt-form" class="chat-form"><input id="doubt-input" placeholder="Type your doubt here..." required maxlength="600"><button class="primary-btn">Send</button></form></div>
     </section>
 
     <!-- LOST AND FOUND -->
