@@ -1,4 +1,230 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#f7f7fc"><title>Dashboard | FUERA DEL CAMPUS</title><link rel="stylesheet" href="style.css"></head>
-  <body><div class="auth-screen" id="auth-screen"><div class="auth-panel"><div class="auth-copy"><p class="auth-kicker">FUERA DEL CAMPUS · STUDENT SPACE</p>
-    <h1 id="auth-title">Welcome back.</h1><p id="auth-subtitle">Log in to continue your journey.</p><div class="auth-tabs"><button class="auth-tab active" id="login-tab" type="button">Log in</button><button class="auth-tab" id="signup-tab" type="button">Sign up</button></div><form id="auth-form" class="auth-form"><label for="auth-name">Name</label><input id="auth-name" placeholder="Enter your name" autocomplete="username" required maxlength="40"><label for="auth-password">Password</label><input id="auth-password" type="password" placeholder="Enter your password" autocomplete="current-password" required minlength="4" maxlength="64"><button id="auth-submit" class="auth-submit">Log in →</button></form><p id="auth-message" class="auth-message" role="status"></p><p class="auth-footnote">Demo account · No email or verification needed</p></div></div><div class="auth-brand"><img src="logo2.png" alt="FUERA DEL CAMPUS logo"><p>LEARN · CREATE · EXPLORE</p></div></div><div class="app" id="app"><aside class="sidebar"><div class="logo"><img src="logo1.png" alt="FUERA DEL CAMPUS"></div><p class="nav-label">MAIN MENU</p><nav><a class="nav-btn active" href="index.html">⌂ Dashboard</a><a class="nav-btn " href="central.html">▦ Student Central</a><a class="nav-btn " href="games.html">🎮 Education Games</a><a class="nav-btn " href="doubts.html">💬 Student Doubts</a><a class="nav-btn " href="lost.html">⌕ Lost & Found</a><a class="nav-btn " href="future.html">◎ FutureMe</a><a class="nav-btn " href="study.html">▤ StudyBuddy</a></nav><div class="sidebar-bottom"><p class="profile">Signed in as <strong id="profile-name">Student</strong></p><button class="logout-button" id="logout-button">Sign out</button></div></aside><main class="main"><header class="topbar"><div><p class="eyebrow">YOUR DIGITAL STUDENT SPACE</p><h2>Dashboard</h2></div><span class="top-tag">✦ FUERA DEL CAMPUS</span></header><div class="hero"><div><span class="eyebrow" style="color:#d5d0ff">WELCOME TO FUERA DEL CAMPUS</span><h1>Make your student<br>life easier.</h1><p>Organize your day, learn new things and study smarter.</p><a class="primary-btn" href="central.html">Explore your space →</a></div><div style="font-size:90px">✦</div></div><h3 class="section-heading">Explore your space</h3><div class="feature-grid"><a class="feature-card lavender" href="central.html"><span>▦</span><h3>Student Central</h3><p>Your timetable and daily tasks.</p></a><a class="feature-card blue" href="games.html"><span>🎮</span><h3>Education Games</h3><p>Learn through quick challenges.</p></a><a class="feature-card lavender" href="doubts.html"><span>💬</span><h3>Student Doubts</h3><p>Chat with your AI study helper.</p></a><a class="feature-card mint" href="lost.html"><span>⌕</span><h3>Lost & Found</h3><p>Find missing belongings.</p></a><a class="feature-card peach" href="future.html"><span>◎</span><h3>FutureMe</h3><p>Explore your interests and careers.</p></a><a class="feature-card blue" href="study.html"><span>▤</span><h3>StudyBuddy</h3><p>Make studying more productive.</p></a></div><footer>© 2026 FUERA DEL CAMPUS · Made for students, by students.</footer></main></div><script src="js/auth.js"></script><script src="js/index.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <meta content="#f7f7fc" name="theme-color"/>
+  <title>
+   Dashboard | FUERA DEL CAMPUS
+  </title>
+  <link href="style.css" rel="stylesheet"/>
+ </head>
+ <body>
+  <div class="intro-animation" id="intro-animation" aria-hidden="true">
+   <div class="intro-sky"></div>
+   <div class="intro-logo-tile"><img src="logo-small.png" alt=""/></div>
+   <div class="intro-login-card"><span>USERNAME</span><i></i><span>PASSWORD</span><i></i><b>LOGIN</b></div>
+   <div class="intro-divider"></div>
+   <div class="intro-brand-tile"><img src="logo-small.png" alt=""/></div>
+   <span class="intro-caption">FUERA DEL CAMPUS</span>
+  </div>
+  <div class="auth-screen" id="auth-screen">
+   <div class="auth-panel">
+    <div class="auth-copy">
+     <p class="auth-kicker">
+      FUERA DEL CAMPUS &middot; STUDENT SPACE
+     </p>
+     <h1 id="auth-title">
+      Welcome back.
+     </h1>
+     <p id="auth-subtitle">
+      Log in to continue your journey.
+     </p>
+     <div class="auth-tabs">
+      <button class="auth-tab active" id="login-tab" type="button">
+       Log in
+      </button>
+      <button class="auth-tab" id="signup-tab" type="button">
+       Sign up
+      </button>
+     </div>
+     <form class="auth-form" id="auth-form">
+      <label for="auth-name">
+       Name
+      </label>
+      <input autocomplete="username" id="auth-name" maxlength="40" placeholder="Enter your name" required=""/>
+      <label for="auth-password">
+       Password
+      </label>
+      <input autocomplete="current-password" id="auth-password" maxlength="64" minlength="4" placeholder="Enter your password" required="" type="password"/>
+      <button class="auth-submit" id="auth-submit" type="submit">
+       Log in &rarr;
+      </button>
+     </form>
+     <p class="auth-message" id="auth-message" role="status">
+     </p>
+     <p class="auth-footnote">
+      Demo account &middot; No email or verification needed
+     </p>
+    </div>
+   </div>
+   <div class="auth-brand">
+    <img alt="FUERA DEL CAMPUS logo" src="./logo-intro.png"/>
+    <p>
+     LEARN &middot; CREATE &middot; EXPLORE
+    </p>
+   </div>
+  </div>
+  <div class="app" id="app">
+   <aside class="sidebar">
+    <div class="logo">
+     <img alt="FUERA DEL CAMPUS" src="logo-small.png"/>
+    </div>
+    <p class="nav-label">
+     MAIN MENU
+    </p>
+    <nav>
+     <a class="nav-btn active" href="index.html">
+      ⌂ Dashboard
+     </a>
+     <a class="nav-btn" href="central.html">
+      ▦ Student Central
+     </a>
+     <a class="nav-btn" href="games.html">
+      🎮 Education Games
+     </a>
+     <a class="nav-btn" href="doubts.html">
+      💬 Student Doubts
+     </a>
+     <a class="nav-btn" href="lost.html">
+      &telrec; Lost &amp; Found
+     </a>
+     <a class="nav-btn" href="future.html">
+      ◎ FutureMe
+     </a>
+     <a class="nav-btn" href="study.html">
+      ▤ StudyBuddy
+     </a>
+    </nav>
+    <div class="sidebar-bottom">
+     <p class="profile">
+      Signed in as
+      <strong id="profile-name">
+       Student
+      </strong>
+     </p>
+     <button class="logout-button" id="logout-button">
+      Sign out
+     </button>
+    </div>
+   </aside>
+   <main class="main">
+    <header class="topbar">
+     <div>
+      <p class="eyebrow">
+       YOUR DIGITAL STUDENT SPACE
+      </p>
+      <h2>
+       Dashboard
+      </h2>
+     </div>
+     <span class="top-tag">
+      ✦ FUERA DEL CAMPUS
+     </span>
+    </header>
+    <div class="hero">
+     <div>
+      <span class="eyebrow" style="color:#d5d0ff">
+       WELCOME TO FUERA DEL CAMPUS
+      </span>
+      <h1>
+       Make your student
+       <br/>
+       life easier.
+      </h1>
+      <p>
+       Organize your day, learn new things and study smarter.
+      </p>
+      <a class="primary-btn" href="central.html">
+       Explore your space &rarr;
+      </a>
+     </div>
+     <div style="font-size:90px">
+      ✦
+     </div>
+    </div>
+    <h3 class="section-heading">
+     Explore your space
+    </h3>
+    <div class="feature-grid">
+     <a class="feature-card lavender" href="central.html">
+      <span>
+       ▦
+      </span>
+      <h3>
+       Student Central
+      </h3>
+      <p>
+       Your timetable and daily tasks.
+      </p>
+     </a>
+     <a class="feature-card blue" href="games.html">
+      <span>
+       🎮
+      </span>
+      <h3>
+       Education Games
+      </h3>
+      <p>
+       Learn through quick challenges.
+      </p>
+     </a>
+     <a class="feature-card lavender" href="doubts.html">
+      <span>
+       💬
+      </span>
+      <h3>
+       Student Doubts
+      </h3>
+      <p>
+       Chat with your AI study helper.
+      </p>
+     </a>
+     <a class="feature-card mint" href="lost.html">
+      <span>
+       &telrec;
+      </span>
+      <h3>
+       Lost &amp; Found
+      </h3>
+      <p>
+       Find missing belongings.
+      </p>
+     </a>
+     <a class="feature-card peach" href="future.html">
+      <span>
+       ◎
+      </span>
+      <h3>
+       FutureMe
+      </h3>
+      <p>
+       Explore your interests and careers.
+      </p>
+     </a>
+     <a class="feature-card blue" href="study.html">
+      <span>
+       ▤
+      </span>
+      <h3>
+       StudyBuddy
+      </h3>
+      <p>
+       Make studying more productive.
+      </p>
+     </a>
+    </div>
+    <footer>
+     &copy; 2026 FUERA DEL CAMPUS &middot; Made for students, by students.
+    </footer>
+   </main>
+  </div>
+  <script src="js/auth.js">
+  </script>
+  <script src="js/common.js">
+  </script>
+  <script src="js/index.js">
+  </script>
+ </body>
+</html>
+
